@@ -5,7 +5,7 @@ const PATHS = {
   src: path.join(__dirname, "..", "src"),
   js: path.join(__dirname, "..", "src", "js"),
   style: path.join(__dirname, "..", "src", "style"),
-  build: path.join(__dirname, "..", "dist")
+  build: path.join(__dirname, "..", "src")
 }
 
 const config = {
@@ -29,7 +29,7 @@ const config = {
   },
   output: {
     path: PATHS.build,
-    filename: "main.js",
+    filename: [PATHS.js + "/index.js"],
     library: "reactJsonView",
     libraryTarget: "umd",
     globalObject: "this"
