@@ -1,6 +1,6 @@
 import React from 'react';
 import { polyfill } from 'react-lifecycles-compat';
-import { toType } from './../../helpers/util';
+import { countKeys, toType } from './../../helpers/util';
 
 //data type components
 import { JsonObject } from './DataTypes';
@@ -36,6 +36,11 @@ class RjvObject extends React.PureComponent {
 
     static getState = props => {
         const size = Object.keys(props.src).length;
+        const keys = [];
+        props.highlight.forEach((h) => {
+            keys.push(h.key);
+        });
+        const amountClickable = countKeys(keys, props.src);
         const expanded =
             (props.collapsed === false ||
                 (props.collapsed !== true && props.collapsed > props.depth)) &&
@@ -58,6 +63,7 @@ class RjvObject extends React.PureComponent {
             object_type: props.type === 'array' ? 'array' : 'object',
             parent_type: props.type === 'array' ? 'array' : 'object',
             size,
+            amountClickable,
             hovered: false
         };
         return state;
@@ -131,9 +137,9 @@ class RjvObject extends React.PureComponent {
 
     getObjectMetaData = src => {
         const { rjvId, theme } = this.props;
-        const { size, hovered } = this.state;
+        const { size, amountClickable, hovered } = this.state;
         return (
-            <VariableMeta rowHovered={hovered} size={size} {...this.props} />
+            <VariableMeta rowHovered={hovered} size={size} amountClickable={amountClickable} {...this.props} />
         );
     };
 

@@ -106,6 +106,14 @@ ReactDom.render(
             name={'feature_set'}
             displayDataTypes={false}
             indentWidth={5}
+            highlight={[
+                {
+                    key: 'testing',
+                    styles: { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
+                    keyStyles: { textDecoration: "underline" },
+                    valueStyles: {cursor: 'pointer', textDecoration: "underline"}
+                }
+            ]}
         />
 
         <br />

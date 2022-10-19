@@ -12,11 +12,11 @@ import Theme from './../themes/getStyle';
 
 export default class extends React.PureComponent {
     getObjectSize = () => {
-        const { size, theme, displayObjectSize } = this.props;
+        const { size, amountClickable, theme, displayObjectSize } = this.props;
         if (displayObjectSize) {
             return (
                 <span class="object-size" {...Theme(theme, 'object-size')}>
-                    {size} item{size === 1 ? '' : 's'}
+                    {size} item{size === 1 ? '' : 's'} {amountClickable > 0 ? `(${amountClickable} clickable)` : ''}
                 </span>
             );
         }

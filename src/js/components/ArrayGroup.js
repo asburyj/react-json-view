@@ -62,6 +62,8 @@ export default class extends React.PureComponent {
         }
 
         const size = groupArraysAfterLength;
+        // Not implemented, no use case for us yet.
+        const amountClickable = -1;
         const groups = Math.ceil(src.length / size);
 
         return (
@@ -74,7 +76,7 @@ export default class extends React.PureComponent {
                 <ObjectName {...this.props} />
 
                 <span>
-                    <VariableMeta size={src.length} {...this.props} />
+                    <VariableMeta size={src.length} amountClickable={amountClickable} {...this.props} />
                 </span>
                 {[...Array(groups)].map((_, i) => (
                     <div

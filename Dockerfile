@@ -1,5 +1,5 @@
 FROM node:14.15.4-buster-slim
-MAINTAINER mac <mac.gainor@gmail.com>
+MAINTAINER lor <lorenzovdweerden@hotmail.com>
 
 # install the node modules at container build time
 RUN mkdir -p /react

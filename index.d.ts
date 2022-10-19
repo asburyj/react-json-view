@@ -136,6 +136,12 @@ export interface ReactJsonViewProps {
    */
   sortKeys?: boolean;
   /**
+   * Set keyStyles or valueStyles for a specific key.
+   *
+   * Default: []
+   */
+  highlight?: Array<HighlightProps>;
+  /**
    * Set to a value to be used as defaultValue when adding new key to json
    *
    * Default: null
@@ -223,6 +229,25 @@ export interface OnSelectProps {
    */
   namespace: Array<string | null>;
 
+}
+
+export interface HighlightProps {
+  /**
+   * The key of what you want to highlight.
+   */
+  key: string;
+  /**
+   * The Style that needs to be applied to the whole line
+   */
+  style: React.CSSProperties;
+  /**
+   * The Style that needs to be applied to the Key text
+   */
+  keyStyle: React.CSSProperties;
+  /**
+   * The Style that needs to be applied to the Value text of the corresponding key
+   */
+  valueStyle: React.CSSProperties;
 }
 
 export type TypeDefaultValue = string | number | boolean | object;

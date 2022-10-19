@@ -53,3 +53,27 @@ export function isTheme(theme) {
     }
     return false;
 }
+
+
+export function countKeys(keyArray, src) {
+    let count = 0;
+
+    if (Array.isArray(src)) {
+        for (let i = 0; i < src.length; i++) {
+            const e = src[i];
+            if (typeof e === 'object') {
+                count += countKeys(keyArray, e);
+            }
+        }
+    } else if (typeof src === 'object') {
+        for (const key in src) {
+            if (typeof src[key] === 'object') {
+                count += countKeys(keyArray, src[key]);
+            } else if (keyArray.includes(key)) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}

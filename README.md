@@ -1,6 +1,6 @@
 ![alt text](https://github.com/mac-s-g/react-json-view/blob/master/doc/rjv-icon-alt.png?raw=true)
 
-[![npm](https://img.shields.io/npm/v/react-json-view.svg)](https://www.npmjs.com/package/react-json-view) [![npm](https://img.shields.io/npm/l/react-json-view.svg)](https://github.com/mac-s-g/react-json-view/blob/master/LISCENSE) [![Build Status](https://travis-ci.org/mac-s-g/react-json-view.svg)](https://travis-ci.org/mac-s-g/react-json-view) [![Coverage Status](https://coveralls.io/repos/github/mac-s-g/react-json-view/badge.svg?branch=master)](https://coveralls.io/github/mac-s-g/react-json-view?branch=master)
+[![npm](https://img.shields.io/npm/v/react-json-view.svg)](https://www.npmjs.com/package/react-json-view) [![npm](https://img.shields.io/npm/l/react-json-view.svg)](https://github.com/mac-s-g/react-json-view/blob/master/LISCENSE) [![Build Status](https://travis-ci.org/LorenzovdWeerden/react-json-view.svg)](https://travis-ci.org/LorenzovdWeerden/react-json-view) [![Coverage Status](https://coveralls.io/repos/github/LorenzovdWeerden/react-json-view/badge.svg?branch=master)](https://coveralls.io/github/LorenzovdWeerden/react-json-view?branch=master)
 
 # react-json-view
 RJV is a React component for displaying and editing javascript **arrays** and **JSON objects**.
@@ -8,6 +8,8 @@ RJV is a React component for displaying and editing javascript **arrays** and **
 This component provides a responsive interface for displaying arrays or JSON in a web browser.  NPM offers a distribution of the source that's transpiled to ES5; so you can include this component with *any web-based javascript application*.
 
 [Check out the Interactive Demo](https://mac-s-g.github.io/react-json-view/demo/dist/)
+
+This fork adds posibility to add styles to string key and value pairs and show the count of the key values in the size.
 
 
 ### Implementation Example
@@ -62,6 +64,7 @@ Name|Type|Default|Description
 `quotesOnKeys`|`boolean`|`true`|set to false to remove quotes from keys (eg. `"name":` vs. `name:`)
 `validationMessage`|`string`|"Validation Error"|Custom message for validation failures to `onEdit`, `onAdd`, or `onDelete` callbacks
 `displayArrayKey`|`boolean`|`true`|When set to `true`, the index of the elements prefix values
+`highlight`|`object[]`|`[]`|Highlights keys and values based on key.Each object needs `key: string` and `styles`, `keyStyles` and `valuestyles` that are typeof `React.CSSProperties`
 
 ### Features
 * `onEdit`, `onAdd` and `onDelete` props allow users to edit the `src` variable
@@ -117,7 +120,7 @@ Returning `false` from a callback method will prevent the src from being affecte
 
 ```bash
 # clone this repository
-git clone git@github.com:mac-s-g/react-json-view.git && cd react-json-view
+git clone git@github.com:LorenzovdWeerden/react-json-view.git && cd react-json-view
 # install dependencies
 npm install --save-dev
 # run the dev server with hot reloading
@@ -139,10 +142,4 @@ You can run the test suite with `npm run test` or `npm run test:watch` to automa
 
 I recommend using docker for development because it enforces environmental consistency.
 
-For information about contributing with Docker, see the [README in ./docker](https://github.com/mac-s-g/react-json-view/blob/master/docker/README.md#contributing-to-this-project-using-docker).
-
-
-### Inspiration
-I drew a ton of design ideas from [react-json-tree](https://github.com/alexkuz/react-json-tree).  Thanks to the RJT contributors for putting together an awesome component!
-
-I'm also inspired by users who come up with interesting feature requests.  Reach out to me with ideas for this project or other projects you want to collaborate on.  My email address is listed on my [github user page](https://github.com/mac-s-g).
+For information about contributing with Docker, see the [README in ./docker](https://github.com/LorenzovdWeerden/react-json-view/blob/master/docker/README.md#contributing-to-this-project-using-docker).

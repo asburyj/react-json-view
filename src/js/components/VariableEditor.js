@@ -55,13 +55,29 @@ class VariableEditor extends React.PureComponent {
             onDelete,
             onSelect,
             displayArrayKey,
-            quotesOnKeys
+            quotesOnKeys,
+            highlight
         } = this.props;
         const { editMode } = this.state;
+
+        let styles = {};
+        let keyStyles = {};
+        let valueStyles = {};
+
+        if (highlight && highlight.length > 0 && namespace) {
+            const highlightObject = highlight.find((h) => h.key === variable.name);
+            if (highlightObject) {
+                styles = highlightObject.styles;
+                keyStyles = highlightObject.keyStyles;
+                valueStyles = highlightObject.valueStyles;
+            }
+        }
+
         return (
             <div
                 {...Theme(theme, 'objectKeyVal', {
-                    paddingLeft: indentWidth * singleIndent
+                    paddingLeft: indentWidth * singleIndent,
+                    ...styles
                 })}
                 onMouseEnter={() =>
                     this.setState({ ...this.state, hovered: true })
@@ -92,7 +108,7 @@ class VariableEditor extends React.PureComponent {
                             {!!quotesOnKeys && (
                                 <span style={{ verticalAlign: 'top' }}>"</span>
                             )}
-                            <span style={{ display: 'inline-block' }}>
+                            <span style={{ display: 'inline-block', ...keyStyles }}>
                                 {variable.name}
                             </span>
                             {!!quotesOnKeys && (
@@ -123,11 +139,9 @@ class VariableEditor extends React.PureComponent {
                                   }
                               }
                     }
-                    {...Theme(theme, 'variableValue', {
-                        cursor: onSelect === false ? 'default' : 'pointer'
-                    })}
+                    {...Theme(theme, 'variableValue', {})}
                 >
-                    {this.getValue(variable, editMode)}
+                    {this.getValue(variable, editMode, valueStyles)}
                 </div>
                 {enableClipboard ? (
                     <CopyToClipboard
@@ -216,14 +230,14 @@ class VariableEditor extends React.PureComponent {
         );
     };
 
-    getValue = (variable, editMode) => {
+    getValue = (variable, editMode, valueStyles) => {
         const type = editMode ? false : variable.type;
         const { props } = this;
         switch (type) {
             case false:
                 return this.getEditInput();
             case 'string':
-                return <JsonString value={variable.value} {...props} />;
+                return <JsonString value={variable.value} {...props} valueStyles={valueStyles} />;
             case 'integer':
                 return <JsonInteger value={variable.value} {...props} />;
             case 'float':
